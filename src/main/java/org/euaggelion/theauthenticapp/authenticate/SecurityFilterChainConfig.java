@@ -38,12 +38,12 @@ public class SecurityFilterChainConfig {
 
                 // Configure authorization rules
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/auth/signup", "/api/auth/login",
+                        .requestMatchers("/api/users/**", "/api/users/register", "/api/users/login",
                                 "/api/users/all", "/v3/api-docs", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/swagger-ui.html")
                         .permitAll()
-                        .requestMatchers(GET, "/api/auth/**").hasAnyRole("CUSTOMER", "ADMIN")
-                        .requestMatchers(GET, "/api/user/**").hasRole("CUSTOMER")
-                        .requestMatchers(GET, "/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers(GET, "/api/users/**").hasAnyRole("USER", "MANUFACTURER")
+                        .requestMatchers(GET, "/api/user/**").hasRole("USER")
+                        .requestMatchers(GET, "/api/admin/**").hasRole("MANUFACTURER")
                         .requestMatchers(POST, "/api/**").authenticated()
                         .anyRequest().permitAll()
                 )
